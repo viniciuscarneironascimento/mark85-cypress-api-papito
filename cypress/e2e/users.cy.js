@@ -15,7 +15,7 @@ describe('POST / users', () => {
     })
   })
 
-  it.only('register a new users (modo 2)', () => {
+  it('register a new users (modo 2)', () => {
     const user = {
       name: 'Vinicius Nascimento6',
       email: 'teste6@teste.com',
@@ -34,7 +34,28 @@ describe('POST / users', () => {
       expect(response.status).to.eql(200)
       cy.log(JSON.stringify(response.body))
     })
+  });
+
+  it.skip('register a new users (modo 3)', () => {
+    const user = {
+      name: 'Vinicius Nascimento6',
+      email: 'teste6@teste.com',
+      password: 'pwd123'
+    }
+
+    //realiza a exclusão no banco para limpara a massa de teste
+    cy.task('deleteUser', user.email)
     
+    //Com uso do plugin-api substitui "cy.request" por "cy.api"
+    cy.api({
+      url: '/users',
+      method: 'POST',
+      body: user,
+      failOnStatusCode: false
+    }).then(response =>{
+      expect(response.status).to.eql(200)
+      cy.log(JSON.stringify(response.body))
+    })
   });
 
 
