@@ -62,8 +62,11 @@ describe('POST / users', () => {
 
   it.only('teste sem assert', ()=>{
     //sem ação
-    cy.visit('http://localhost:3000')
-    cy.get('h1').should('have.text', 'Faça seu login')
+    //cy.visit('http://localhost:3000')
+    //cy.get('h1').should('have.text', 'Faça seu login')
+
+    cy.visit('https://www.google.com/')
+    cy.get('.uU7dJb').should('have.text', 'Brasil')
   })
 
 

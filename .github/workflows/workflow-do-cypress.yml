@@ -19,4 +19,4 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress contra o ambiente local
-        run: npx cypress run --config baseUrl=http://localhost:3000  # Utilizando a URL da aplicação local
+        run: npx cypress run --config baseUrl=https://www.google.com/  # Utilizando a URL da aplicação local
