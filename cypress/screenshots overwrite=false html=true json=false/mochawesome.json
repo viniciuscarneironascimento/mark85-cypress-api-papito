@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-04-02T23:49:05.214Z",
+    "end": "2025-04-02T23:49:18.564Z",
+    "duration": 13350,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5bd86cb3-2049-419b-89e9-54308db7513a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\users.cy.js",
+      "file": "cypress\\e2e\\users.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c38e305b-1aed-46ef-8cdb-b83aacc4af27",
+          "title": "POST / users",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "teste sem assert",
+              "fullTitle": "POST / users teste sem assert",
+              "timedOut": null,
+              "duration": 8557,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "//sem ação\n//cy.visit('http://localhost:3000')\n//cy.get('h1').should('have.text', 'Faça seu login')\ncy.visit('https://www.google.com/');\ncy.get('input[name=\"btnI\"]').should('not.be.visible');\ncy.get('input[name=\"btnK\"]').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '[ <input.RNmpXc>, 1 more... ]' not to be 'visible'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '[ <input.RNmpXc>, 1 more... ]' not to be 'visible'\n    at Context.eval (webpack://mark85-cypress-api/./cypress/e2e/users.cy.js:69:33)",
+                "diff": null
+              },
+              "uuid": "d392d3d1-de49-40b8-8322-92c5acc6c418",
+              "parentUUID": "c38e305b-1aed-46ef-8cdb-b83aacc4af27",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "d392d3d1-de49-40b8-8322-92c5acc6c418"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 8557,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/screenshots overwrite=false html=true json=false"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
