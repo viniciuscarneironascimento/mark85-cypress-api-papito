@@ -1,11 +1,11 @@
-name: Run Cypress Tests
+name: Executar testes Cypress
 
 on:
-  repository_dispatch:
-    types: [run-cypress-tests]  # Quando a aplicação dispara os testes
   push:
     branches:
-      - main  # Quando há mudanças no código dos testes
+      - main  # Aciona o workflow em caso de push na branch main do repositório de testes
+  repository_dispatch:
+    types: [run-cypress-tests]  # Esse evento é disparado pelo repositório da aplicação
 
 jobs:
   test:
@@ -18,6 +18,5 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Rodar Cypress contra ambiente de staging
-        run: npx cypress run --config baseUrl=https://localhost:3000
-
+      - name: Rodar Cypress contra o ambiente local
+        run: npx cypress run --config baseUrl=http://localhost:3000  # Utilizando a URL da aplicação local
