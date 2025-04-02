@@ -1,3 +1,5 @@
+//const { it } = require("mocha");
+
 describe('POST / users', () => {
   
   it.skip('register a new users (modo 1)', () => {
@@ -15,7 +17,7 @@ describe('POST / users', () => {
     })
   })
 
-  it('register a new users (modo 2)', () => {
+  it.skip('register a new users (modo 2)', () => {
     const user = {
       name: 'Vinicius Nascimento6',
       email: 'teste6@teste.com',
@@ -57,6 +59,12 @@ describe('POST / users', () => {
       cy.log(JSON.stringify(response.body))
     })
   });
+
+  it.only('teste sem assert', ()=>{
+    //sem ação
+    cy.visit('http://localhost:3000')
+    cy.get('h1').should('have.text', 'Faça seu login')
+  })
 
 
 });

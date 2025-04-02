@@ -4,7 +4,7 @@ const { connect } = require('./cypress/support/mongo')
 
 module.exports = defineConfig({
   e2e: {
-    async setupNodeEvents(on, config) {
+    /*async setupNodeEvents(on, config) {
 
       const db = await connect()
 
@@ -16,7 +16,7 @@ module.exports = defineConfig({
         }
       })
 
-    },
-    baseUrl: 'http://localhost:3333'
+    },*/
+    baseUrl: 'http://localhost:3000'
   },
 });

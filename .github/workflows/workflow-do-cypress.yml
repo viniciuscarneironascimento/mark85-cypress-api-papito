@@ -1,0 +1,23 @@
+name: Run Cypress Tests
+
+on:
+  repository_dispatch:
+    types: [run-cypress-tests]  # Quando a aplicação dispara os testes
+  push:
+    branches:
+      - main  # Quando há mudanças no código dos testes
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código dos testes
+        uses: actions/checkout@v3
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar Cypress contra ambiente de staging
+        run: npx cypress run --config baseUrl=https://localhost:3000
+
