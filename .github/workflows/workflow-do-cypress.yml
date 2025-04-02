@@ -21,9 +21,3 @@ jobs:
       - name: Rodar Cypress contra o ambiente local
         run: npm cypress run --reporter mochawesome --reporter-options reportDir=cypress/screenshots,overwrite=false,html=true,json=false"
 
-      - name: Upload do relatório de testes
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: cypress-test-report
-          path: cypress/screenshots/
