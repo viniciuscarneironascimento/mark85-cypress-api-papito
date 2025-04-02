@@ -19,7 +19,7 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress contra o ambiente local
-        run: npm run test  # Removendo parâmetro inválido
+        run: npm cypress run --reporter mochawesome --reporter-options reportDir=cypress/screenshots,overwrite=false,html=true,json=false"
 
       - name: Upload do relatório de testes
         if: always()
