@@ -65,8 +65,8 @@ describe('POST / users', () => {
     //cy.visit('http://localhost:3000')
     //cy.get('h1').should('have.text', 'Faça seu login')
 
-    cy.visit('https://www.google.com/')
-    cy.get('.uU7dJb', { timeout: 10000 }).should('be.visible');
+    cy.visit('https://www.google.com/');
+    cy.get('input[name="btnI"]').should('have.value', 'Estou com sorte');
   })
 
 
