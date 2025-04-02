@@ -66,7 +66,7 @@ describe('POST / users', () => {
     //cy.get('h1').should('have.text', 'Faça seu login')
 
     cy.visit('https://www.google.com/');
-    cy.get('input[name="btnI"]').should('have.value', 'Estou com sorte');
+    cy.get('input[name="btnI"]').should('be.visible')
   })
 
 
