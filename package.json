@@ -14,10 +14,11 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run"
+    "test": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/screenshots,overwrite=false,html=true,json=false"
   },
   "devDependencies": {
     "cypress": "^14.2.1",
+    "cypress-mochawesome-reporter": "^3.8.2",
     "cypress-plugin-api": "^2.11.2",
     "mongodb": "^6.15.0"
   }

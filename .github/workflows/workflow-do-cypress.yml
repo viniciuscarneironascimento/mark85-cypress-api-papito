@@ -19,4 +19,11 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress contra o ambiente local
-        run: npx cypress run --config baseUrl=https://www.google.com/  # Utilizando a URL da aplicação local
+        run: npm run test --config baseUrl=https://www.google.com/  # Utilizando a URL da aplicação local
+      
+      - name: Upload do relatório de testes
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-test-report
+          path: cypress/screenshots/

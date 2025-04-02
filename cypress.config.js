@@ -3,6 +3,7 @@ const { defineConfig } = require("cypress");
 const { connect } = require('./cypress/support/mongo')
 
 module.exports = defineConfig({
+  reporter: 'cypress-mochawesome-reporter',
   e2e: {
     /*async setupNodeEvents(on, config) {
 
