@@ -19,7 +19,13 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress com Mochawesome e Cypress Cloud
-        run: npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true
+        run: npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true | tee cypress-output.log
+
+      - name: Capturar e salvar link do Cypress Cloud
+        run: |
+          mkdir -p cypress/results
+          grep -oP 'Recorded Run: \Khttps://cloud.cypress.io/[^ ]+' cypress-output.log > cypress/results/cypress-cloud-url.txt
+          echo "Link do Cypress Cloud salvo em cypress/results/cypress-cloud-url.txt"
 
       - name: Upload do relatório Mochawesome
         if: always()
@@ -34,3 +40,10 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos/
+
+      - name: Upload do link do Cypress Cloud
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-cloud-url
+          path: cypress/results/cypress-cloud-url.txt
