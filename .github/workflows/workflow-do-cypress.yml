@@ -3,9 +3,9 @@ name: Executar testes Cypress
 on:
   push:
     branches:
-      - main  # Aciona o workflow em caso de push na branch main do repositório de testes
+      - main
   repository_dispatch:
-    types: [run-cypress-tests]  # Esse evento é disparado pelo repositório da aplicação
+    types: [run-cypress-tests]
 
 jobs:
   test:
@@ -24,9 +24,15 @@ jobs:
       - name: Capturar e salvar link do Cypress Cloud
         run: |
           mkdir -p cypress/results
-          CLOUD_URL=$(sed -n 's/.*Recorded Run: \(https:\/\/cloud\.cypress\.io\/[^\ ]*\).*/\1/p' cypress-output.log)
-          echo "${CLOUD_URL:-Link não encontrado}" > cypress/results/cypress-cloud-url.txt
-          cat cypress/results/cypress-cloud-url.txt
+          CLOUD_URL=$(grep -oE 'https://cloud\.cypress\.io/projects/[^ ]+' cypress-output.log | head -n 1)
+          
+          if [[ -z "$CLOUD_URL" ]]; then
+            echo "ERRO: Link do Cypress Cloud não encontrado!"
+            exit 1
+          fi
+
+          echo "$CLOUD_URL" > cypress/results/cypress-cloud-url.txt
+          echo "Link salvo: $CLOUD_URL"
 
       - name: Upload do relatório Mochawesome
         if: always()
