@@ -19,7 +19,9 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress com Mochawesome e Cypress Cloud
-        run: npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true | tee cypress-output.log
+        run: |
+          set -o pipefail
+          npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true | tee cypress-output.log
 
       - name: Capturar e salvar link do Cypress Cloud
         run: |
