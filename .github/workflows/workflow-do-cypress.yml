@@ -24,6 +24,7 @@ jobs:
           npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true | tee cypress-output.log
 
       - name: Capturar e salvar link do Cypress Cloud
+        if: always()
         run: |
           mkdir -p cypress/results
           CLOUD_URL=$(grep -oE 'https://cloud\.cypress\.io/projects/[^ ]+' cypress-output.log | head -n 1)
