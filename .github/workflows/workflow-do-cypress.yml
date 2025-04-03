@@ -20,3 +20,10 @@ jobs:
 
       - name: Rodar Cypress contra o ambiente local
         run: npx cypress run --reporter mochawesome --reporter-options html=true,json=false
+      
+      - name: Upload do relatório de testes
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-test-report
+          path: mochawesome-report/mochawesome.html
