@@ -19,11 +19,8 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress contra o ambiente local
-        run: npx cypress run --reporter mochawesome --reporter-options html=true,json=false
+        run: npx cypress run --reporter mochawesome --reporter-options html=true,json=true
 
-      - name: Gerar relatório consolidado
-        run: npx mochawesome-merge mochawesome-report/*.json > mochawesome-report/report.json && npx marge mochawesome-report/report.json -o mochawesome-report
-      
       - name: Upload do relatório de testes
         if: always()
         uses: actions/upload-artifact@v4
