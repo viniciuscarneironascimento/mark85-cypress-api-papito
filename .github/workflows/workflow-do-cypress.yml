@@ -18,12 +18,22 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Rodar Cypress contra o ambiente local
-        run: npx cypress run --reporter mochawesome --reporter-options html=true,json=true
+      - name: Rodar Cypress com Mochawesome e Cypress Cloud
+        run: npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options html=true,json=true
 
-      - name: Upload do relatório de testes
+      - name: Gerar relatório consolidado
+        run: npx mochawesome-merge cypress/results/*.json > cypress/results/report.json && npx marge cypress/results/report.json -o cypress/results/
+
+      - name: Upload do relatório Mochawesome
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-test-report
-          path: mochawesome-report/
+          name: cypress-mochawesome-report
+          path: cypress/results/
+
+      - name: Upload dos vídeos dos testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos/

@@ -14,7 +14,8 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run --reporter mochawesome --reporter-options html=true,json=false"
+    "test": "cypress run --reporter mochawesome --reporter-options html=true,json=false",
+    "cypress-cloud": "cypress run --record --key 5afba00a-f58b-4d41-a22d-dc0231e409d5"
   },
   "devDependencies": {
     "cypress": "^14.2.1",
