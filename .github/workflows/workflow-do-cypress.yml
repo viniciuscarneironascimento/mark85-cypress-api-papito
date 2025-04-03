@@ -21,11 +21,6 @@ jobs:
       - name: Rodar Cypress com Mochawesome e Cypress Cloud
         run: npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true
 
-      - name: Gerar relatório consolidado
-        run: |
-          npx mochawesome-merge cypress/results/*.json > cypress/results/report.json
-          npx marge cypress/results/report.json -o cypress/results/
-
       - name: Upload do relatório Mochawesome
         if: always()
         uses: actions/upload-artifact@v4
