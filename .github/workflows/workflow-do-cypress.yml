@@ -19,12 +19,12 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress com Mochawesome e Cypress Cloud
-        run: npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true
-
-      - name: Gerar relatório consolidado
         run: |
-          npx mochawesome-merge cypress/results/*.json > cypress/results/report.json
-          npx marge cypress/results/report.json -o cypress/results/
+          npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true | tee output.log
+          # Extrai o link do Cypress Cloud da saída do log
+          CYPRESS_URL=$(grep -o 'https://cloud.cypress.io/projects/[^ ]*' output.log | tail -n1)
+          echo "$CYPRESS_URL" > cypress/results/cypress-cloud-url.txt
+          echo "Recorded Run URL: $CYPRESS_URL"
 
       - name: Upload do relatório Mochawesome
         if: always()
@@ -39,13 +39,6 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos/
-
-      - name: Salvar link do Cypress Cloud
-        run: |
-          echo "Obtendo link do Cypress Cloud..."
-          CYPRESS_URL=$(npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options html=true,json=true 2>&1 | tee output.log | grep -o 'https://cloud.cypress.io/projects/[^ ]*')
-          echo "$CYPRESS_URL" > cypress/results/cypress-cloud-url.txt
-          echo "Recorded Run URL: $CYPRESS_URL"
 
       - name: Upload do link do Cypress Cloud
         if: always()
