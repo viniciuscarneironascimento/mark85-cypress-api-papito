@@ -14,7 +14,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/screenshots,overwrite=false,html=true,json=false"
+    "test": "cypress run --reporter mochawesome --reporter-options html=true,json=false"
   },
   "devDependencies": {
     "cypress": "^14.2.1",
