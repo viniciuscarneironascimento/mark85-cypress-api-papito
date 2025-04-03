@@ -19,5 +19,4 @@ jobs:
         run: npm install
 
       - name: Rodar Cypress contra o ambiente local
-        run: npx cypress run --config baseUrl=https://www.google.com/ --reporter mochawesome --reporter-options reportDir=cypress/screenshots,overwrite=false,html=true,json=false"
-
+        run: npx cypress run --config baseUrl=https://www.google.com/
