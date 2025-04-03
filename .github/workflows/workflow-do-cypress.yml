@@ -24,8 +24,9 @@ jobs:
       - name: Capturar e salvar link do Cypress Cloud
         run: |
           mkdir -p cypress/results
-          grep -oP 'Recorded Run: \Khttps://cloud.cypress.io/[^ ]+' cypress-output.log > cypress/results/cypress-cloud-url.txt
-          echo "Link do Cypress Cloud salvo em cypress/results/cypress-cloud-url.txt"
+          CLOUD_URL=$(sed -n 's/.*Recorded Run: \(https:\/\/cloud\.cypress\.io\/[^\ ]*\).*/\1/p' cypress-output.log)
+          echo "${CLOUD_URL:-Link não encontrado}" > cypress/results/cypress-cloud-url.txt
+          cat cypress/results/cypress-cloud-url.txt
 
       - name: Upload do relatório Mochawesome
         if: always()
