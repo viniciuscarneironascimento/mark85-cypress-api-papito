@@ -12,18 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código dos testes
+      - name: Clonando código dos testes
         uses: actions/checkout@v3
 
       - name: Instalar dependências
         run: npm install
 
-      - name: Rodar Cypress com Mochawesome e Cypress Cloud
+      - name: Executar casos de testes do Cypress
         run: |
           set -o pipefail
           npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD_KEY }} --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true | tee cypress-output.log
 
-      - name: Capturar e salvar link do Cypress Cloud
+      - name: Obter link do relatório Cypress Cloud
         if: always()
         run: |
           mkdir -p cypress/results
