@@ -51,9 +51,3 @@ jobs:
           name: cypress-videos
           path: cypress/videos/
 
-      - name: Upload do link do Cypress Cloud
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-cloud-url
-          path: cypress/results/cypress-cloud-url.txt
