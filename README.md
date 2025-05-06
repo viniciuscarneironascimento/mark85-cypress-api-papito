@@ -1,4 +1,4 @@
-# 📦 Nome do Projeto: mark85-cypress-api-papito (public)
+# 📦 Projeto: mark85-cypress-api-papito (public)
 
 🔗 [Repositório no GitHub](https://github.com/viniciuscarneironascimento/mark85-cypress-api-papito)
 
